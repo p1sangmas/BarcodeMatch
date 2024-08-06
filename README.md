@@ -1,1 +1,1 @@
-# WinFormsApp1
+# BarcodeMatch - Barcode comparer software
