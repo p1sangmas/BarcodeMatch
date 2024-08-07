@@ -45,7 +45,13 @@
             label2 = new Label();
             button4 = new Button();
             button5 = new Button();
+            groupBox1 = new GroupBox();
+            textBox5 = new TextBox();
+            textBox4 = new TextBox();
+            label6 = new Label();
+            label5 = new Label();
             menuStrip1.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -72,7 +78,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1050, 33);
+            menuStrip1.Size = new Size(1104, 33);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -109,7 +115,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(827, 909);
+            button2.Location = new Point(870, 909);
             button2.Name = "button2";
             button2.Size = new Size(170, 34);
             button2.TabIndex = 7;
@@ -124,7 +130,7 @@
             listBoxLogs.ItemHeight = 25;
             listBoxLogs.Location = new Point(238, 495);
             listBoxLogs.Name = "listBoxLogs";
-            listBoxLogs.Size = new Size(759, 354);
+            listBoxLogs.Size = new Size(802, 354);
             listBoxLogs.TabIndex = 8;
             listBoxLogs.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
@@ -172,7 +178,7 @@
             textBox3.Location = new Point(238, 285);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(759, 135);
+            textBox3.Size = new Size(447, 135);
             textBox3.TabIndex = 13;
             // 
             // label2
@@ -186,7 +192,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(738, 188);
+            button4.Location = new Point(777, 191);
             button4.Name = "button4";
             button4.Size = new Size(188, 34);
             button4.TabIndex = 15;
@@ -196,18 +202,68 @@
             // 
             // button5
             // 
-            button5.Location = new Point(672, 909);
+            button5.Location = new Point(701, 909);
             button5.Name = "button5";
             button5.Size = new Size(138, 34);
             button5.TabIndex = 16;
             button5.Text = "EXPORT LOG";
             button5.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(textBox5);
+            groupBox1.Controls.Add(textBox4);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Location = new Point(729, 267);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(311, 175);
+            groupBox1.TabIndex = 17;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "OK/NG Counter";
+            // 
+            // textBox5
+            // 
+            textBox5.BackColor = Color.White;
+            textBox5.Location = new Point(98, 110);
+            textBox5.Name = "textBox5";
+            textBox5.ReadOnly = true;
+            textBox5.Size = new Size(150, 31);
+            textBox5.TabIndex = 3;
+            // 
+            // textBox4
+            // 
+            textBox4.BackColor = Color.White;
+            textBox4.Location = new Point(98, 48);
+            textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
+            textBox4.Size = new Size(150, 31);
+            textBox4.TabIndex = 2;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(17, 110);
+            label6.Name = "label6";
+            label6.Size = new Size(41, 25);
+            label6.TabIndex = 1;
+            label6.Text = "NG:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(18, 51);
+            label5.Name = "label5";
+            label5.Size = new Size(40, 25);
+            label5.TabIndex = 0;
+            label5.Text = "OK:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1050, 978);
+            ClientSize = new Size(1104, 978);
+            Controls.Add(groupBox1);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(label2);
@@ -228,6 +284,8 @@
             Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -251,5 +309,10 @@
         private Label label2;
         private Button button4;
         private Button button5;
+        private GroupBox groupBox1;
+        private TextBox textBox5;
+        private TextBox textBox4;
+        private Label label6;
+        private Label label5;
     }
 }

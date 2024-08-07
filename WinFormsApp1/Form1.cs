@@ -15,6 +15,8 @@ namespace WinFormsApp1
         private DataTable serialNumbersTable;
         private string logFilePath = "C:\\Users\\fakhr\\OneDrive\\Documents\\Intern\\test\\scan_log.txt";
         private HashSet<string> scannedSerialNumbers = new HashSet<string>();
+        private int okCounter = 0;
+        private int ngCounter = 0;
 
         public Form1()
         {
@@ -22,6 +24,10 @@ namespace WinFormsApp1
             DisplayWaitingText();
             BarcodeScanner barcodeScanner = new BarcodeScanner(textBox1);
             barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
+
+            // Initialize textbox4 and textbox5 to 0
+            textBox4.Text = "0";
+            textBox5.Text = "0";
         }
 
         private void ClearFile()
@@ -30,6 +36,8 @@ namespace WinFormsApp1
             listBoxLogs.Items.Clear();
             scannedSerialNumbers.Clear();
             DisplayWaitingText();
+            textBox4.Text = "0";
+            textBox5.Text = "0";
         }
 
         private void BarcodeScanner_BarcodeScanned(object? sender, BarcodeScannerEventArgs e)
@@ -55,12 +63,12 @@ namespace WinFormsApp1
                 return;
             }
 
-            if (scannedSerialNumbers.Contains(scannedSerialNumber))
+            /*if (scannedSerialNumbers.Contains(scannedSerialNumber))
             {
                 MessageBox.Show("This serial number has already been scanned.");
                 LogMessage($"NG: Serial number already scanned. Scanned Serial Number: {scannedSerialNumber}");
                 return;
-            }
+            }*/
 
             var serialNumberExists = scannedSerialNumber == comparisonValue;
 
@@ -73,12 +81,18 @@ namespace WinFormsApp1
                 // Add the serial number to the scanned list
                 scannedSerialNumbers.Add(scannedSerialNumber);
 
+                okCounter++;
+                textBox4.Text = okCounter.ToString();
+
             }
             else
             {
                 //MessageBox.Show("Serial number not found in the master list.");
                 DisplayNGText();
                 LogMessage($"NG: Scanned serial number not match: {scannedSerialNumber}");
+
+                ngCounter++;
+                textBox5.Text = ngCounter.ToString();
 
             }
         }
