@@ -50,6 +50,7 @@
             textBox4 = new TextBox();
             label6 = new Label();
             label5 = new Label();
+            button6 = new Button();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -165,11 +166,11 @@
             // 
             // button3
             // 
-            button3.Location = new Point(885, 107);
+            button3.Location = new Point(238, 909);
             button3.Name = "button3";
             button3.Size = new Size(112, 34);
             button3.TabIndex = 12;
-            button3.Text = "CLEAR";
+            button3.Text = "RESET";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -208,6 +209,7 @@
             button5.TabIndex = 16;
             button5.Text = "EXPORT LOG";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // groupBox1
             // 
@@ -258,11 +260,22 @@
             label5.TabIndex = 0;
             label5.Text = "OK:";
             // 
+            // button6
+            // 
+            button6.Location = new Point(889, 108);
+            button6.Name = "button6";
+            button6.Size = new Size(168, 33);
+            button6.TabIndex = 18;
+            button6.Text = "CLEAR BARCODE";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1104, 978);
+            Controls.Add(button6);
             Controls.Add(groupBox1);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -314,5 +327,6 @@
         private TextBox textBox4;
         private Label label6;
         private Label label5;
+        private Button button6;
     }
 }

@@ -7,6 +7,7 @@ using USB_Barcode_Scanner;
 using ExcelDataReader;
 using System.Diagnostics;
 using static System.Windows.Forms.DataFormats;
+using OfficeOpenXml;
 
 namespace WinFormsApp1
 {
@@ -63,20 +64,13 @@ namespace WinFormsApp1
                 return;
             }
 
-            /*if (scannedSerialNumbers.Contains(scannedSerialNumber))
-            {
-                MessageBox.Show("This serial number has already been scanned.");
-                LogMessage($"NG: Serial number already scanned. Scanned Serial Number: {scannedSerialNumber}");
-                return;
-            }*/
-
             var serialNumberExists = scannedSerialNumber == comparisonValue;
 
             if (serialNumberExists)
             {
                 //MessageBox.Show("Serial number match in the master list.");
                 DisplayOKText();
-                LogMessage($"OK: Scanned serial number match: {scannedSerialNumber}");
+                LogMessage($"OK Scanned serial number match: {scannedSerialNumber}");
 
                 // Add the serial number to the scanned list
                 scannedSerialNumbers.Add(scannedSerialNumber);
@@ -89,7 +83,7 @@ namespace WinFormsApp1
             {
                 //MessageBox.Show("Serial number not found in the master list.");
                 DisplayNGText();
-                LogMessage($"NG: Scanned serial number not match: {scannedSerialNumber}");
+                LogMessage($"NG Scanned serial number unmatch: {scannedSerialNumber}");
 
                 ngCounter++;
                 textBox5.Text = ngCounter.ToString();
@@ -108,82 +102,55 @@ namespace WinFormsApp1
             listBoxLogs.Items.Add($"{DateTime.Now}: {message}");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ExportLogsToExcel(string filePath)
         {
-            CompareSerialNumber(textBox1.Text);
-            textBox1.Clear();
-        }
+            // Create a new Excel package
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (var package = new ExcelPackage())
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (File.Exists(logFilePath))
             {
-                Process.Start(new ProcessStartInfo(logFilePath) { UseShellExecute = true });
-            }
-            else
-            {
-                MessageBox.Show("Log file not found.");
-            }
-        }
+                // Create a new worksheet
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Logs");
 
-        private void label3_Click(object sender, EventArgs e)
-        {
+                // Set the column headers
+                worksheet.Cells[1, 1].Value = "No.";
+                worksheet.Cells[1, 2].Value = "Date";
+                worksheet.Cells[1, 3].Value = "Time";
+                worksheet.Cells[1, 4].Value = "Status";
+                worksheet.Cells[1, 5].Value = "Scanned Serial Number";
 
-        }
+                // Set the column widths
+                worksheet.Column(1).Width = 10;
+                worksheet.Column(2).Width = 10;
+                worksheet.Column(3).Width = 10;
+                worksheet.Column(4).Width = 10;
+                worksheet.Column(5).Width = 20;
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+                // Set the data starting row
+                int row = 2;
 
-        }
-
-        private void productNumberToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            WinFormsApp2.Form2 form2 = new WinFormsApp2.Form2();
-            form2.Show();
-        }
-
-        private void loadNumberToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "INI Files|*.ini";
-                openFileDialog.Title = "Select an INI File";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                // Export the logs to the worksheet
+                foreach (string log in listBoxLogs.Items)
                 {
-                    string iniFilePath = openFileDialog.FileName;
-                    string[] lines = File.ReadAllLines(iniFilePath);
-                    if (lines.Length > 0)
-                    {
-                        textBox2.Text = lines[0];
-                    }
+                    string[] logParts = log.Split(' ');
+                    string date = logParts[0].Trim();
+                    string time = logParts[1].Trim();
+                    string status = logParts[3].Trim();
+                    string serialNum = logParts[8].Trim();
+
+                    worksheet.Cells[row, 1].Value = row - 1;
+                    worksheet.Cells[row, 2].Value = date;
+                    worksheet.Cells[row, 3].Value = time;
+                    worksheet.Cells[row, 4].Value = status;
+                    worksheet.Cells[row, 5].Value = serialNum;
+
+                    row++;
                 }
+
+                // Save the Excel package to the specified file path
+                package.SaveAs(new FileInfo(filePath));
             }
+
         }
 
         private void DisplayWaitingText()
@@ -215,9 +182,22 @@ namespace WinFormsApp1
             textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            CompareSerialNumber(textBox1.Text);
+            textBox1.Clear();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(logFilePath))
+            {
+                Process.Start(new ProcessStartInfo(logFilePath) { UseShellExecute = true });
+            }
+            else
+            {
+                MessageBox.Show("Log file not found.");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -230,6 +210,89 @@ namespace WinFormsApp1
             textBox2.Clear();
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files|*.xlsx";
+            saveFileDialog.Title = "Save Log File";
+            saveFileDialog.FileName = "log";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+                ExportLogsToExcel(filePath);
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
+
+        private void productNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WinFormsApp2.Form2 form2 = new WinFormsApp2.Form2();
+            form2.Show();
+        }
+
+        private void loadNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "INI Files|*.ini";
+                openFileDialog.Title = "Select an INI File";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string iniFilePath = openFileDialog.FileName;
+                    string[] lines = File.ReadAllLines(iniFilePath);
+                    if (lines.Length > 0)
+                    {
+                        textBox2.Text = lines[0];
+                    }
+                }
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }
