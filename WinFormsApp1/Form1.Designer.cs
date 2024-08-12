@@ -34,6 +34,7 @@
             editToolStripMenuItem = new ToolStripMenuItem();
             productNumberToolStripMenuItem = new ToolStripMenuItem();
             loadNumberToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             button1 = new Button();
             button2 = new Button();
             listBoxLogs = new ListBox();
@@ -51,6 +52,8 @@
             label6 = new Label();
             label5 = new Label();
             button6 = new Button();
+            label7 = new Label();
+            aboutToolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -76,7 +79,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { editToolStripMenuItem, aboutToolStripMenuItem, aboutToolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1104, 33);
@@ -103,6 +106,13 @@
             loadNumberToolStripMenuItem.Size = new Size(277, 34);
             loadNumberToolStripMenuItem.Text = "Load Product No.";
             loadNumberToolStripMenuItem.Click += loadNumberToolStripMenuItem_Click;
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(63, 29);
+            aboutToolStripMenuItem.Text = "User";
+            aboutToolStripMenuItem.Click += changeUserToolStripMenuItem_Click;
             // 
             // button1
             // 
@@ -166,7 +176,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(238, 909);
+            button3.Location = new Point(557, 909);
             button3.Name = "button3";
             button3.Size = new Size(112, 34);
             button3.TabIndex = 12;
@@ -264,17 +274,37 @@
             // 
             button6.Location = new Point(889, 108);
             button6.Name = "button6";
-            button6.Size = new Size(168, 33);
+            button6.Size = new Size(151, 33);
             button6.TabIndex = 18;
-            button6.Text = "CLEAR BARCODE";
+            button6.Text = "CLEAR SCAN";
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F);
+            label7.Location = new Point(39, 918);
+            label7.Name = "label7";
+            label7.Size = new Size(79, 25);
+            label7.TabIndex = 19;
+            label7.Text = "SMK-ML";
+            label7.Click += label7_Click;
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            aboutToolStripMenuItem1.Size = new Size(78, 29);
+            aboutToolStripMenuItem1.Text = "About";
+            aboutToolStripMenuItem1.Click += aboutToolStripMenuItem1_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1104, 978);
+            Controls.Add(label7);
             Controls.Add(button6);
             Controls.Add(groupBox1);
             Controls.Add(button5);
@@ -328,5 +358,8 @@
         private Label label6;
         private Label label5;
         private Button button6;
+        private Label label7;
+        private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem1;
     }
 }

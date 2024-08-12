@@ -8,6 +8,7 @@ using ExcelDataReader;
 using System.Diagnostics;
 using static System.Windows.Forms.DataFormats;
 using OfficeOpenXml;
+using System.Media;
 
 namespace WinFormsApp1
 {
@@ -18,6 +19,7 @@ namespace WinFormsApp1
         private HashSet<string> scannedSerialNumbers = new HashSet<string>();
         private int okCounter = 0;
         private int ngCounter = 0;
+        private UserRole userRole;
 
         public Form1()
         {
@@ -171,6 +173,7 @@ namespace WinFormsApp1
             textBox3.ForeColor = Color.Black;
             textBox3.BackColor = Color.MediumTurquoise;
             textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            //SystemSounds.Beep.Play();
         }
         private void DisplayNGText()
         {
@@ -180,6 +183,7 @@ namespace WinFormsApp1
             textBox3.ForeColor = Color.Black;
             textBox3.BackColor = Color.Red;
             textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            //SystemSounds.Exclamation.Play();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -215,7 +219,7 @@ namespace WinFormsApp1
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Excel Files|*.xlsx";
             saveFileDialog.Title = "Save Log File";
-            saveFileDialog.FileName = "log";
+            //saveFileDialog.FileName = "log";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -233,6 +237,16 @@ namespace WinFormsApp1
         {
             WinFormsApp2.Form2 form2 = new WinFormsApp2.Form2();
             form2.Show();
+        }
+
+        private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AuthenticateUser();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("   SMK-ML 2024. Designed by Fakhrul Fauzi");
         }
 
         private void loadNumberToolStripMenuItem_Click(object sender, EventArgs e)
@@ -294,5 +308,37 @@ namespace WinFormsApp1
 
         }
 
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AuthenticateUser()
+        {
+            using (LoginForm loginForm = new LoginForm())
+            {
+                if (loginForm.ShowDialog() == DialogResult.OK)
+                {
+                    userRole = loginForm.UserRole;
+                    ApplyRolePermissions();
+                }
+            }
+        }
+
+        private void ApplyRolePermissions()
+        {
+            if (userRole == UserRole.Engineer)
+            {
+
+
+
+            }
+            else if (userRole == UserRole.Operator)
+            {
+                // Disable features for Operator
+                productNumberToolStripMenuItem.Enabled = false;
+
+            }
+        }
     }
 }
