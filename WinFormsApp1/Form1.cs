@@ -31,6 +31,21 @@ namespace WinFormsApp1
             // Initialize textbox4 and textbox5 to 0
             textBox4.Text = "0";
             textBox5.Text = "0";
+            productNumberToolStripMenuItem.Enabled = false;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            OpenOperatorIDForm();
+        }
+
+        private void OpenOperatorIDForm()
+        {
+            using (OperatorID operatorIDForm = new OperatorID())
+            {
+                operatorIDForm.ShowDialog();
+                textBox6.Text = operatorIDForm.OperatorIDValue;
+            }
         }
 
         private void ClearFile()
@@ -241,7 +256,7 @@ namespace WinFormsApp1
 
         private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AuthenticateUser();
+
         }
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -268,12 +283,12 @@ namespace WinFormsApp1
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void engineerModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            AuthenticateUser();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -329,8 +344,8 @@ namespace WinFormsApp1
         {
             if (userRole == UserRole.Engineer)
             {
-
-
+                productNumberToolStripMenuItem.Enabled = true;
+                textBox6.Enabled = false;
 
             }
             else if (userRole == UserRole.Operator)
@@ -340,5 +355,12 @@ namespace WinFormsApp1
 
             }
         }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+
     }
 }

@@ -97,9 +97,9 @@ namespace WinFormsApp1
             label1.AutoSize = true;
             label1.Location = new Point(99, 103);
             label1.Name = "label1";
-            label1.Size = new Size(51, 25);
+            label1.Size = new Size(107, 25);
             label1.TabIndex = 3;
-            label1.Text = "User:";
+            label1.Text = "Engineer ID:";
             // 
             // label2
             // 
@@ -130,12 +130,11 @@ namespace WinFormsApp1
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Name = "LoginForm";
-            Text = "Login User";
+            Text = "Engineer Mode";
+            Load += LoginForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
-
-        
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -149,6 +148,9 @@ namespace WinFormsApp1
 
         }
 
-        
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
