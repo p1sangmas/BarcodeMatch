@@ -18,6 +18,8 @@ namespace WinFormsApp1
         public OperatorID()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += OperatorID_KeyDown;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,13 +33,30 @@ namespace WinFormsApp1
             {
                 OperatorIDValue = textBox1.Text;
             }
-            
+
             Close();
+        }
+
+        private void OperatorID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                button2.PerformClick();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void OperatorID_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

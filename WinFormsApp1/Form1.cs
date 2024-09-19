@@ -28,15 +28,18 @@ namespace WinFormsApp1
             BarcodeScanner barcodeScanner = new BarcodeScanner(textBox1);
             barcodeScanner.BarcodeScanned += BarcodeScanner_BarcodeScanned;
 
-            // Initialize textbox4 and textbox5 to 0
+            // Initialize
             textBox4.Text = "0";
             textBox5.Text = "0";
             productNumberToolStripMenuItem.Enabled = false;
+            exitEngineerModeToolStripMenuItem.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             OpenOperatorIDForm();
+            this.KeyPreview = true;
+            this.KeyDown += Form1_KeyDown;
         }
 
         private void OpenOperatorIDForm()
@@ -130,18 +133,21 @@ namespace WinFormsApp1
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Logs");
 
                 // Set the column headers
-                worksheet.Cells[1, 1].Value = "No.";
-                worksheet.Cells[1, 2].Value = "Date";
-                worksheet.Cells[1, 3].Value = "Time";
-                worksheet.Cells[1, 4].Value = "Status";
-                worksheet.Cells[1, 5].Value = "Scanned Serial Number";
+                worksheet.Cells[1, 1].Value = "Operator ID";
+                worksheet.Cells[1, 2].Value = "No.";
+                worksheet.Cells[1, 3].Value = "Date";
+                worksheet.Cells[1, 4].Value = "Time";
+                worksheet.Cells[1, 5].Value = "Status";
+                worksheet.Cells[1, 6].Value = "Scanned Serial Number";
+                
 
                 // Set the column widths
-                worksheet.Column(1).Width = 10;
+                worksheet.Column(1).Width = 20;
                 worksheet.Column(2).Width = 10;
                 worksheet.Column(3).Width = 10;
                 worksheet.Column(4).Width = 10;
-                worksheet.Column(5).Width = 20;
+                worksheet.Column(5).Width = 10;
+                worksheet.Column(6).Width = 20;
 
                 // Set the data starting row
                 int row = 2;
@@ -154,12 +160,15 @@ namespace WinFormsApp1
                     string time = logParts[1].Trim();
                     string status = logParts[3].Trim();
                     string serialNum = logParts[8].Trim();
+                    string opID = textBox6.Text;
 
-                    worksheet.Cells[row, 1].Value = row - 1;
-                    worksheet.Cells[row, 2].Value = date;
-                    worksheet.Cells[row, 3].Value = time;
-                    worksheet.Cells[row, 4].Value = status;
-                    worksheet.Cells[row, 5].Value = serialNum;
+                    worksheet.Cells[row, 1].Value = opID;
+                    worksheet.Cells[row, 2].Value = row - 1;
+                    worksheet.Cells[row, 3].Value = date;
+                    worksheet.Cells[row, 4].Value = time;
+                    worksheet.Cells[row, 5].Value = status;
+                    worksheet.Cells[row, 6].Value = serialNum;
+                    
 
                     row++;
                 }
@@ -250,13 +259,8 @@ namespace WinFormsApp1
 
         private void productNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            WinFormsApp2.Form2 form2 = new WinFormsApp2.Form2();
+            WinFormsApp1.Form2 form2 = new WinFormsApp1.Form2();
             form2.Show();
-        }
-
-        private void changeUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -288,46 +292,6 @@ namespace WinFormsApp1
             AuthenticateUser();
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AuthenticateUser()
         {
             using (LoginForm loginForm = new LoginForm())
@@ -345,22 +309,34 @@ namespace WinFormsApp1
             if (userRole == UserRole.Engineer)
             {
                 productNumberToolStripMenuItem.Enabled = true;
+                exitEngineerModeToolStripMenuItem.Enabled = true;
                 textBox6.Enabled = false;
+                button3.Enabled = true;
+                button2.Enabled = true;
+                button5.Enabled = true;
 
             }
-            else if (userRole == UserRole.Operator)
+            else
             {
                 // Disable features for Operator
                 productNumberToolStripMenuItem.Enabled = false;
-
+                
             }
         }
 
-        private void textBox6_TextChanged(object sender, EventArgs e)
+        private void exitEngineerModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            productNumberToolStripMenuItem.Enabled = false;
+            exitEngineerModeToolStripMenuItem.Enabled = false;
+            textBox6.Enabled = true;
         }
 
-
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace WinFormsApp2
+namespace WinFormsApp1
 {
     public partial class Form2 : Form
     {
@@ -9,6 +9,8 @@ namespace WinFormsApp2
         public Form2()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+            this.KeyDown += Form2_KeyDown;
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -27,6 +29,18 @@ namespace WinFormsApp2
             
         }
 
+        private void Form2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                button2.PerformClick();
+            }
+        }
+
         private void SaveConfiguration()
         {
             if (AreAllTextBoxesFilled())
@@ -42,11 +56,19 @@ namespace WinFormsApp2
                     textBox8.Text.ToUpper()
                 };
 
-                string fileName = $"{textBox1.Text.ToUpper()}.ini";
-                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "INI Files (*.ini)|*.ini";
+                    saveFileDialog.Title = "Save Configuration";
+                    saveFileDialog.FileName = textBox1.Text.ToUpper();
 
-                File.WriteAllLines(filePath, lines);
-                MessageBox.Show("Saved successfully");
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = saveFileDialog.FileName;
+                        File.WriteAllLines(filePath, lines);
+                        MessageBox.Show("Saved successfully");
+                    }
+                }
             }
             else
             {
@@ -69,3 +91,4 @@ namespace WinFormsApp2
         }
     
 }
+

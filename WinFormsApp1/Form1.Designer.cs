@@ -36,6 +36,7 @@
             loadNumberToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             engineerModeToolStripMenuItem = new ToolStripMenuItem();
+            exitEngineerModeToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem1 = new ToolStripMenuItem();
             button1 = new Button();
             button2 = new Button();
@@ -66,20 +67,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(37, 175);
+            label1.Font = new Font("Segoe UI", 12F);
+            label1.Location = new Point(37, 201);
             label1.Name = "label1";
-            label1.Size = new Size(152, 25);
+            label1.Size = new Size(203, 32);
             label1.TabIndex = 0;
             label1.Text = "Scanned Barcode:";
-            label1.Click += label1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(236, 172);
+            textBox1.Font = new Font("Segoe UI", 12F);
+            textBox1.Location = new Point(288, 203);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(447, 31);
+            textBox1.Size = new Size(425, 39);
             textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // menuStrip1
             // 
@@ -114,18 +115,25 @@
             // 
             // aboutToolStripMenuItem
             // 
-            aboutToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { engineerModeToolStripMenuItem });
+            aboutToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { engineerModeToolStripMenuItem, exitEngineerModeToolStripMenuItem });
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(75, 29);
             aboutToolStripMenuItem.Text = "Mode";
-            aboutToolStripMenuItem.Click += changeUserToolStripMenuItem_Click;
+            //aboutToolStripMenuItem.Click += changeUserToolStripMenuItem_Click;
             // 
             // engineerModeToolStripMenuItem
             // 
             engineerModeToolStripMenuItem.Name = "engineerModeToolStripMenuItem";
-            engineerModeToolStripMenuItem.Size = new Size(234, 34);
+            engineerModeToolStripMenuItem.Size = new Size(238, 34);
             engineerModeToolStripMenuItem.Text = "Engineer Mode";
             engineerModeToolStripMenuItem.Click += engineerModeToolStripMenuItem_Click;
+            // 
+            // exitEngineerModeToolStripMenuItem
+            // 
+            exitEngineerModeToolStripMenuItem.Name = "exitEngineerModeToolStripMenuItem";
+            exitEngineerModeToolStripMenuItem.Size = new Size(238, 34);
+            exitEngineerModeToolStripMenuItem.Text = "Operator Mode";
+            exitEngineerModeToolStripMenuItem.Click += exitEngineerModeToolStripMenuItem_Click;
             // 
             // aboutToolStripMenuItem1
             // 
@@ -136,9 +144,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(736, 170);
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.Location = new Point(736, 159);
             button1.Name = "button1";
-            button1.Size = new Size(126, 33);
+            button1.Size = new Size(126, 44);
             button1.TabIndex = 6;
             button1.Text = "SCAN";
             button1.UseVisualStyleBackColor = true;
@@ -146,9 +155,11 @@
             // 
             // button2
             // 
-            button2.Location = new Point(868, 971);
+            button2.Enabled = false;
+            button2.Font = new Font("Segoe UI", 12F);
+            button2.Location = new Point(837, 967);
             button2.Name = "button2";
-            button2.Size = new Size(170, 34);
+            button2.Size = new Size(201, 46);
             button2.TabIndex = 7;
             button2.Text = "OPEN LOG FILE";
             button2.UseVisualStyleBackColor = true;
@@ -156,49 +167,52 @@
             // 
             // listBoxLogs
             // 
+            listBoxLogs.Font = new Font("Segoe UI", 12F);
             listBoxLogs.FormattingEnabled = true;
             listBoxLogs.HorizontalScrollbar = true;
-            listBoxLogs.ItemHeight = 25;
+            listBoxLogs.ItemHeight = 32;
             listBoxLogs.Location = new Point(236, 557);
             listBoxLogs.Name = "listBoxLogs";
-            listBoxLogs.Size = new Size(802, 354);
+            listBoxLogs.Size = new Size(811, 324);
             listBoxLogs.TabIndex = 8;
-            listBoxLogs.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(37, 557);
             label3.Name = "label3";
-            label3.Size = new Size(109, 25);
+            label3.Size = new Size(143, 32);
             label3.TabIndex = 9;
             label3.Text = "Activity Log:";
-            label3.Click += label3_Click;
             // 
             // textBox2
             // 
             textBox2.BackColor = Color.White;
-            textBox2.Location = new Point(236, 255);
+            textBox2.Font = new Font("Segoe UI", 12F);
+            textBox2.Location = new Point(288, 286);
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
-            textBox2.Size = new Size(447, 31);
+            textBox2.Size = new Size(425, 39);
             textBox2.TabIndex = 10;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(37, 255);
+            label4.Font = new Font("Segoe UI", 12F);
+            label4.Location = new Point(37, 283);
             label4.Name = "label4";
-            label4.Size = new Size(170, 25);
+            label4.Size = new Size(227, 32);
             label4.TabIndex = 11;
             label4.Text = "Master List Barcode:";
             // 
             // button3
             // 
-            button3.Location = new Point(555, 971);
+            button3.Enabled = false;
+            button3.Font = new Font("Segoe UI", 12F);
+            button3.Location = new Point(524, 967);
             button3.Name = "button3";
-            button3.Size = new Size(112, 34);
+            button3.Size = new Size(112, 46);
             button3.TabIndex = 12;
             button3.Text = "RESET";
             button3.UseVisualStyleBackColor = true;
@@ -206,26 +220,28 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(236, 347);
+            textBox3.Location = new Point(288, 369);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(447, 135);
+            textBox3.Size = new Size(425, 135);
             textBox3.TabIndex = 13;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(37, 347);
+            label2.Font = new Font("Segoe UI", 12F);
+            label2.Location = new Point(37, 369);
             label2.Name = "label2";
-            label2.Size = new Size(64, 25);
+            label2.Size = new Size(83, 32);
             label2.TabIndex = 14;
             label2.Text = "Status:";
             // 
             // button4
             // 
-            button4.Location = new Point(775, 253);
+            button4.Font = new Font("Segoe UI", 12F);
+            button4.Location = new Point(797, 240);
             button4.Name = "button4";
-            button4.Size = new Size(188, 34);
+            button4.Size = new Size(188, 47);
             button4.TabIndex = 15;
             button4.Text = "CLEAR MASTER";
             button4.UseVisualStyleBackColor = true;
@@ -233,9 +249,11 @@
             // 
             // button5
             // 
-            button5.Location = new Point(699, 971);
+            button5.Enabled = false;
+            button5.Font = new Font("Segoe UI", 12F);
+            button5.Location = new Point(668, 967);
             button5.Name = "button5";
-            button5.Size = new Size(138, 34);
+            button5.Size = new Size(138, 46);
             button5.TabIndex = 16;
             button5.Text = "EXPORT LOG";
             button5.UseVisualStyleBackColor = true;
@@ -247,7 +265,8 @@
             groupBox1.Controls.Add(textBox4);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
-            groupBox1.Location = new Point(727, 329);
+            groupBox1.Font = new Font("Segoe UI", 12F);
+            groupBox1.Location = new Point(736, 329);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(311, 175);
             groupBox1.TabIndex = 17;
@@ -260,7 +279,7 @@
             textBox5.Location = new Point(98, 110);
             textBox5.Name = "textBox5";
             textBox5.ReadOnly = true;
-            textBox5.Size = new Size(150, 31);
+            textBox5.Size = new Size(150, 39);
             textBox5.TabIndex = 3;
             // 
             // textBox4
@@ -269,32 +288,35 @@
             textBox4.Location = new Point(98, 48);
             textBox4.Name = "textBox4";
             textBox4.ReadOnly = true;
-            textBox4.Size = new Size(150, 31);
+            textBox4.Size = new Size(150, 39);
             textBox4.TabIndex = 2;
             // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F);
             label6.Location = new Point(17, 110);
             label6.Name = "label6";
-            label6.Size = new Size(41, 25);
+            label6.Size = new Size(53, 32);
             label6.TabIndex = 1;
             label6.Text = "NG:";
             // 
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F);
             label5.Location = new Point(18, 51);
             label5.Name = "label5";
-            label5.Size = new Size(40, 25);
+            label5.Size = new Size(51, 32);
             label5.TabIndex = 0;
             label5.Text = "OK:";
             // 
             // button6
             // 
-            button6.Location = new Point(887, 170);
+            button6.Font = new Font("Segoe UI", 12F);
+            button6.Location = new Point(887, 159);
             button6.Name = "button6";
-            button6.Size = new Size(151, 33);
+            button6.Size = new Size(151, 44);
             button6.TabIndex = 18;
             button6.Text = "CLEAR SCAN";
             button6.UseVisualStyleBackColor = true;
@@ -309,15 +331,15 @@
             label7.Size = new Size(79, 25);
             label7.TabIndex = 19;
             label7.Text = "SMK-ML";
-            label7.Click += label7_Click;
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(textBox6);
+            groupBox2.Font = new Font("Segoe UI", 12F);
             groupBox2.Location = new Point(37, 55);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(314, 93);
+            groupBox2.Size = new Size(314, 111);
             groupBox2.TabIndex = 20;
             groupBox2.TabStop = false;
             groupBox2.Text = "Operator ID";
@@ -325,9 +347,10 @@
             // label8
             // 
             label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F);
             label8.Location = new Point(45, 44);
             label8.Name = "label8";
-            label8.Size = new Size(34, 25);
+            label8.Size = new Size(42, 32);
             label8.TabIndex = 21;
             label8.Text = "ID:";
             // 
@@ -337,9 +360,8 @@
             textBox6.Location = new Point(106, 41);
             textBox6.Name = "textBox6";
             textBox6.ReadOnly = true;
-            textBox6.Size = new Size(150, 31);
+            textBox6.Size = new Size(150, 39);
             textBox6.TabIndex = 21;
-            textBox6.TextChanged += textBox6_TextChanged;
             // 
             // Form1
             // 
@@ -411,5 +433,6 @@
         private GroupBox groupBox2;
         private Label label8;
         private TextBox textBox6;
+        private ToolStripMenuItem exitEngineerModeToolStripMenuItem;
     }
 }

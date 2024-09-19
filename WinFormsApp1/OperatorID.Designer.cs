@@ -37,16 +37,18 @@
             // 
             // textBox1
             // 
+            textBox1.Font = new Font("Segoe UI", 12F);
             textBox1.Location = new Point(238, 200);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
+            textBox1.Size = new Size(150, 39);
             textBox1.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(249, 295);
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.Location = new Point(249, 285);
             button1.Name = "button1";
-            button1.Size = new Size(112, 34);
+            button1.Size = new Size(112, 44);
             button1.TabIndex = 1;
             button1.Text = "ENTER";
             button1.UseVisualStyleBackColor = true;
@@ -55,27 +57,29 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F);
             label1.Location = new Point(171, 203);
             label1.Name = "label1";
-            label1.Size = new Size(34, 25);
+            label1.Size = new Size(42, 32);
             label1.TabIndex = 2;
             label1.Text = "ID:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(171, 115);
+            label2.Font = new Font("Segoe UI", 16F);
+            label2.Location = new Point(124, 86);
             label2.Name = "label2";
-            label2.Size = new Size(280, 32);
+            label2.Size = new Size(376, 45);
             label2.TabIndex = 3;
             label2.Text = "Please Enter Operator ID:";
             // 
             // button2
             // 
-            button2.Location = new Point(249, 360);
+            button2.Font = new Font("Segoe UI", 12F);
+            button2.Location = new Point(249, 348);
             button2.Name = "button2";
-            button2.Size = new Size(112, 34);
+            button2.Size = new Size(112, 46);
             button2.TabIndex = 4;
             button2.Text = "CANCEL";
             button2.UseVisualStyleBackColor = true;
@@ -92,7 +96,8 @@
             Controls.Add(button1);
             Controls.Add(textBox1);
             Name = "OperatorID";
-            Text = "OperatorID";
+            Text = "Barcode Checker v1";
+            Load += OperatorID_Load;
             ResumeLayout(false);
             PerformLayout();
         }

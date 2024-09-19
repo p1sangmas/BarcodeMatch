@@ -12,7 +12,7 @@ namespace WinFormsApp1
         private Label label2;
         private Button button2;
         private TextBox textBox2;
-
+        private Label label3;
         private Dictionary<string, (string Password, UserRole Role)> users;
 
         public UserRole UserRole { get; private set; }
@@ -21,6 +21,8 @@ namespace WinFormsApp1
         {
             InitializeComponent();
             InitializeUsers();
+            this.KeyPreview = true;
+            this.KeyDown += Login_KeyDown;
         }
 
         private void InitializeUsers()
@@ -50,6 +52,18 @@ namespace WinFormsApp1
             }
         }
 
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                button2.PerformClick();
+            }
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
@@ -63,30 +77,34 @@ namespace WinFormsApp1
             label1 = new Label();
             label2 = new Label();
             button2 = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(209, 103);
+            textBox1.Font = new Font("Segoe UI", 12F);
+            textBox1.Location = new Point(274, 183);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
+            textBox1.Size = new Size(150, 39);
             textBox1.TabIndex = 0;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(209, 204);
+            textBox2.Font = new Font("Segoe UI", 12F);
+            textBox2.Location = new Point(274, 258);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(150, 31);
+            textBox2.Size = new Size(150, 39);
             textBox2.TabIndex = 1;
             textBox2.UseSystemPasswordChar = true;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
             // button1
             // 
-            button1.Location = new Point(188, 351);
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.Location = new Point(200, 352);
             button1.Name = "button1";
-            button1.Size = new Size(112, 34);
+            button1.Size = new Size(112, 47);
             button1.TabIndex = 2;
             button1.Text = "LOGIN";
             button1.UseVisualStyleBackColor = true;
@@ -95,34 +113,48 @@ namespace WinFormsApp1
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(99, 103);
+            label1.Font = new Font("Segoe UI", 12F);
+            label1.Location = new Point(100, 183);
             label1.Name = "label1";
-            label1.Size = new Size(107, 25);
+            label1.Size = new Size(143, 32);
             label1.TabIndex = 3;
             label1.Text = "Engineer ID:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(99, 207);
+            label2.Font = new Font("Segoe UI", 12F);
+            label2.Location = new Point(100, 261);
             label2.Name = "label2";
-            label2.Size = new Size(91, 25);
+            label2.Size = new Size(116, 32);
             label2.TabIndex = 4;
             label2.Text = "Password:";
             // 
             // button2
             // 
-            button2.Location = new Point(188, 419);
+            button2.Font = new Font("Segoe UI", 12F);
+            button2.Location = new Point(200, 420);
             button2.Name = "button2";
-            button2.Size = new Size(112, 34);
+            button2.Size = new Size(112, 48);
             button2.TabIndex = 5;
             button2.Text = "CANCEL";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 16F);
+            label3.Location = new Point(150, 84);
+            label3.Name = "label3";
+            label3.Size = new Size(237, 45);
+            label3.TabIndex = 6;
+            label3.Text = "Engineer Mode";
+            // 
             // LoginForm
             // 
-            ClientSize = new Size(541, 676);
+            ClientSize = new Size(541, 621);
+            Controls.Add(label3);
             Controls.Add(button2);
             Controls.Add(label2);
             Controls.Add(label1);
