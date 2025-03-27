@@ -5,7 +5,7 @@ BarcodeMatch is a Windows Forms application designed to compare barcodes against
 ![](./interface.jpeg)
 
 ---
-## Table of Contents
+## Table of Contents 
 - [Features](#features)
 - [Project Components](#project-components)
 - [Dependencies](#dependencies)
@@ -18,7 +18,7 @@ BarcodeMatch is a Windows Forms application designed to compare barcodes against
 
 ---
 
-## Features
+## Features 🔧
 
 - **Barcode Scanning**: Supports barcode scanning using a USB barcode scanner.
 - **Master List Management**: Load and clear master list barcodes.
@@ -31,7 +31,7 @@ BarcodeMatch is a Windows Forms application designed to compare barcodes against
 
 ---
 
-## Project Components
+## Project Components ⚙️
 
 ### Main Forms
 
@@ -54,7 +54,7 @@ BarcodeMatch is a Windows Forms application designed to compare barcodes against
    - Designer: [OperatorID.Designer.cs](WinFormsApp1/OperatorID.Designer.cs)
    - Resources: [OperatorID.resx](WinFormsApp1/OperatorID.resx)
 
-### Supporting Files
+### Supporting Files 📂
 
 - **Program.cs**: Entry point for the application. ([Program.cs](WinFormsApp1/Program.cs))
 - **UserRole.cs**: Enum defining user roles (Engineer, Operator). ([UserRole.cs](WinFormsApp1/UserRole.cs))
@@ -62,7 +62,7 @@ BarcodeMatch is a Windows Forms application designed to compare barcodes against
 
 ---
 
-## Dependencies
+## Dependencies 🔑
 
 The project uses the following NuGet packages:
 
@@ -91,7 +91,7 @@ The project uses the following NuGet packages:
 
 ---
 
-## Usage
+## Usage 👨🏻‍💻
 
 ### Starting the Application
 
@@ -124,7 +124,7 @@ The project uses the following NuGet packages:
 
 ---
 
-## Future Enhancements
+## Future Enhancements ⚡️
 
 Here are some possible improvements and features:
 
@@ -149,7 +149,7 @@ Here are some possible improvements and features:
 
 ---
 
-## Contributions
+## Contributions ❤️
 
 1. Fork the repository.
 2. Create a feature branch:
@@ -168,13 +168,16 @@ Here are some possible improvements and features:
 
 ---
 
-## License
+## License ⚖️
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## Acknowledgments
+## Acknowledgments 😊
 
-- Designed by Fakhrul Fauzi.
-- Built using .NET 8.0 and Windows Forms.
+- All supportive engineers and operators in SMK Malaysia Sdn. Bhd.
+
+---
+
+- Designed by Fakhrul Fauzi. Built using .NET 8.0 and Windows Forms.
