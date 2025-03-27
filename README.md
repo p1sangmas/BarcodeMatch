@@ -72,7 +72,7 @@ The project uses the following NuGet packages:
 
 ---
 
-## Installation
+## Installation 📀
 
 1. Clone the repository:
    ```bash
@@ -180,4 +180,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-- Designed by Fakhrul Fauzi. Built using .NET 8.0 and Windows Forms.
+Designed by Fakhrul Fauzi. Built using .NET 8.0 and Windows Forms.
